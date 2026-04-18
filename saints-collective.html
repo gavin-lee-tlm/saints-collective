@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Saints Collective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --green:   #1B3A2A;
+  --gold:    #C9A96A;
+  --sand:    #F2EDE3;
+  --white:   #FFFFFF;
+  --ink:     #1C1C1A;
+  --muted:   #6E6E68;
+  --rule:    rgba(27,58,42,0.10);
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --sans:    'Outfit', system-ui, sans-serif;
+}
+
+body{font-family:var(--sans);background:var(--white);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none}
+img{display:block}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 56px;
+  transition:background .35s,border-color .35s;
+  border-bottom:1px solid transparent;
+}
+nav.solid{background:rgba(255,255,255,.97);border-color:var(--rule)}
+.wordmark{
+  font-family:var(--serif);font-size:19px;font-weight:600;
+  letter-spacing:.04em;color:var(--white);
+  transition:color .35s;
+}
+nav.solid .wordmark{color:var(--green)}
+.nav-links{display:flex;align-items:center;gap:38px;list-style:none}
+.nav-links a{
+  font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);transition:color .2s;
+}
+nav.solid .nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  padding:9px 22px;
+  background:var(--gold);color:var(--green)!important;
+  font-weight:600!important;letter-spacing:.1em;
+  border-radius:2px;
+}
+.nav-cta:hover{opacity:.9}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  background:var(--green);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:160px 48px 120px;
+  overflow:hidden;
+}
+/* warm sun-ray overlay */
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 50% 30%, rgba(201,169,106,.13) 0%, transparent 70%);
+}
+/* subtle linen texture */
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='.5' fill='rgba(255,255,255,.03)'/%3E%3Ccircle cx='3' cy='3' r='.5' fill='rgba(255,255,255,.03)'/%3E%3C/svg%3E");
+}
+.hero-content{position:relative;z-index:1;max-width:860px}
+.hero-sup{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:30px;
+}
+.hero-sup::before,.hero-sup::after{content:'';width:28px;height:1px;background:var(--gold);opacity:.5}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(56px,10vw,108px);
+  font-weight:400;line-height:.95;
+  color:var(--white);letter-spacing:-.01em;
+  margin-bottom:10px;
+}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-divider{width:44px;height:1px;background:var(--gold);margin:34px auto;opacity:.45}
+.hero-sub{
+  font-family:var(--serif);font-size:clamp(18px,3vw,26px);
+  font-style:italic;font-weight:400;
+  color:rgba(255,255,255,.5);
+  max-width:600px;margin:0 auto 18px;line-height:1.6;
+}
+.hero-verse{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.22);margin-bottom:52px;
+}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-block;font-family:var(--sans);
+  font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;padding:14px 34px;
+  border:none;cursor:pointer;border-radius:2px;
+  transition:opacity .2s,background .2s;
+}
+.btn-gold{background:var(--gold);color:var(--green)}
+.btn-gold:hover{opacity:.88}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.28);color:var(--white)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.65)}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{opacity:.88}
+.btn-outline{background:transparent;border:1px solid var(--green);color:var(--green)}
+.btn-outline:hover{background:var(--green);color:var(--white)}
+
+/* ─── MISSION BAND ─── */
+.mission-band{
+  background:var(--sand);
+  padding:88px 56px;text-align:center;
+  border-bottom:1px solid var(--rule);
+}
+.eyebrow{
+  font-size:10px;font-weight:500;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px;display:block;
+}
+.mission-band blockquote{
+  font-family:var(--serif);
+  font-size:clamp(22px,4vw,40px);
+  font-weight:400;font-style:italic;
+  color:var(--green);
+  max-width:880px;margin:0 auto 24px;line-height:1.5;
+}
+.mission-band cite{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ─── STATS ─── */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--rule);
+}
+.stat{padding:48px 24px;text-align:center;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:none}
+.stat-n{
+  font-family:var(--serif);font-size:42px;font-weight:500;
+  color:var(--green);line-height:1;margin-bottom:8px;
+}
+.stat-n sub{font-size:22px;vertical-align:baseline}
+.stat-l{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* ─── GENERIC SECTION ─── */
+.sec{padding:100px 56px}
+.sec-inner{max-width:1180px;margin:0 auto}
+.sec-label{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.sec-h{
+  font-family:var(--serif);
+  font-size:clamp(34px,5.5vw,62px);
+  font-weight:400;color:var(--green);
+  line-height:1.08;margin-bottom:20px;
+}
+.sec-h em{font-style:italic;font-weight:400}
+.sec-p{font-size:16px;color:var(--muted);max-width:520px;line-height:1.9}
+
+/* ─── CHURCH FEATURE ─── */
+.church-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  margin-top:64px;
+  border:1px solid var(--rule);
+}
+.church-dark{background:var(--green);padding:60px 52px}
+.church-dark .sec-label{color:var(--gold)}
+.church-dark .sec-h{color:var(--white);font-size:34px;margin-bottom:16px}
+.church-dark .sec-h em{color:var(--gold)}
+.church-dark .intro{font-size:15px;color:rgba(255,255,255,.52);line-height:1.9;margin-bottom:40px}
+.prog-list{display:flex;flex-direction:column}
+.prog{display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-top:1px solid rgba(255,255,255,.07)}
+.prog:first-child{border-top:none;padding-top:0}
+.prog-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px}
+.prog-body h5{font-size:14px;font-weight:500;color:var(--white);margin-bottom:3px}
+.prog-body p{font-size:13px;color:rgba(255,255,255,.44);line-height:1.75;margin:0}
+
+.church-light{background:var(--white);padding:60px 52px;border-left:1px solid var(--rule)}
+.gov-note{
+  background:var(--sand);border-left:2px solid var(--gold);
+  padding:20px 24px;margin:26px 0 30px;
+}
+.gov-note p{font-size:14px;color:var(--muted);line-height:1.85;margin:0}
+.gov-note strong{color:var(--ink);font-weight:500}
+.check-list{display:flex;flex-direction:column;gap:13px;margin-bottom:36px}
+.check-item{
+  display:flex;align-items:flex-start;gap:14px;
+  font-size:14px;color:var(--muted);line-height:1.6;
+}
+.check-item::before{
+  content:'';flex-shrink:0;
+  width:15px;height:15px;margin-top:4px;
+  border-radius:50%;border:1px solid var(--gold);
+}
+
+/* ─── PILLARS ─── */
+.pillars-bg{background:var(--sand)}
+.pillar-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);margin-top:60px;
+}
+.pillar{
+  background:var(--white);padding:44px 36px;
+  border-bottom:2px solid transparent;
+  transition:border-color .25s;
+}
+.pillars-bg .pillar{background:rgba(255,255,255,.65)}
+.pillar:hover{border-bottom-color:var(--gold)}
+.pillar-n{font-size:10px;letter-spacing:.2em;color:rgba(27,58,42,.18);margin-bottom:22px;font-weight:500}
+.pillar-icon{width:34px;height:34px;margin-bottom:18px;opacity:.55}
+.pillar h3{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--green);margin-bottom:10px}
+.pillar p{font-size:14px;color:var(--muted);line-height:1.85}
+
+/* ─── GLOBAL ─── */
+.global-bg{background:var(--green)}
+.global-bg .sec-label{color:var(--gold)}
+.global-bg .sec-h{color:var(--white)}
+.global-bg .sec-h em{color:var(--gold)}
+.global-bg .sec-p{color:rgba(255,255,255,.48);max-width:100%}
+.global-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start}
+.loc-list{display:flex;flex-direction:column}
+.loc{display:flex;gap:22px;padding:28px 0;border-top:1px solid rgba(255,255,255,.07)}
+.loc:first-child{border-top:none;padding-top:0}
+.loc-dot-wrap{display:flex;flex-direction:column;align-items:center;padding-top:5px}
+.loc-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.loc-vline{flex:1;width:1px;background:rgba(201,169,106,.2);margin-top:6px;min-height:22px}
+.loc h4{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--white);margin-bottom:6px}
+.loc p{font-size:13px;color:rgba(255,255,255,.44);line-height:1.8;margin-bottom:10px}
+.loc-tag{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);opacity:.8;
+  border:1px solid rgba(201,169,106,.3);padding:3px 10px;display:inline-block;
+}
+.globe-wrap{
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  padding:48px;aspect-ratio:1;
+}
+.globe-wrap svg{width:100%;opacity:.28}
+
+/* ─── PARTNERS ─── */
+.partner-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--rule);margin-top:60px;
+}
+.partner-card{background:var(--white);padding:44px 40px}
+.partner-type{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:500}
+.partner-card h4{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--green);margin-bottom:12px}
+.partner-card p{font-size:14px;color:var(--muted);line-height:1.85}
+.partner-open{
+  background:var(--sand);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  min-height:220px;
+}
+
+/* ─── GIVE ─── */
+.give-bg{background:var(--green)}
+.give-inner{max-width:640px;margin:0 auto;text-align:center}
+.give-bg .sec-label{display:flex;justify-content:center;color:var(--gold)}
+.give-bg .sec-h{color:var(--white);text-align:center}
+.give-bg .sec-h em{color:var(--gold)}
+.give-bg .sec-p{color:rgba(255,255,255,.48);margin:0 auto 44px;text-align:center;max-width:100%}
+.amounts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.amt{
+  border:1px solid rgba(255,255,255,.2);background:transparent;
+  color:rgba(255,255,255,.55);
+  padding:10px 22px;font-family:var(--sans);font-size:14px;
+  cursor:pointer;transition:all .2s;border-radius:2px;
+}
+.amt:hover,.amt.on{background:var(--gold);border-color:var(--gold);color:var(--green);font-weight:500}
+.give-row{display:flex;max-width:460px;margin:0 auto}
+.give-input{
+  flex:1;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);border-right:none;
+  color:var(--white);padding:14px 20px;
+  font-family:var(--sans);font-size:15px;outline:none;
+}
+.give-input::placeholder{color:rgba(255,255,255,.3)}
+.give-note{font-size:11px;color:rgba(255,255,255,.22);margin-top:14px;letter-spacing:.06em}
+.give-stats{
+  display:flex;gap:48px;justify-content:center;
+  margin-top:60px;padding-top:48px;
+  border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;
+}
+.gs-n{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--gold)}
+.gs-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:4px}
+
+/* ─── NEWSLETTER ─── */
+.nl-bg{background:var(--sand);border-top:1px solid var(--rule);text-align:center}
+.nl-inner{max-width:540px;margin:0 auto}
+.nl-bg .sec-h{text-align:center}
+.nl-bg .sec-p{margin:0 auto 36px;text-align:center}
+.nl-row{display:flex}
+.nl-input{
+  flex:1;background:var(--white);border:1px solid var(--rule);border-right:none;
+  color:var(--ink);padding:14px 20px;
+  font-family:var(--sans);font-size:14px;outline:none;
+}
+.nl-input::placeholder{color:var(--muted);opacity:.6}
+.nl-note{font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:.06em;opacity:.65}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--green);
+  padding:72px 56px 40px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.footer-grid{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:60px;
+  padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.07);
+}
+.footer-brand-name{
+  font-family:var(--serif);font-size:20px;font-weight:600;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:16px;
+}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.38);line-height:1.9;max-width:260px}
+.footer-affil{margin-top:18px;font-size:12px;color:rgba(255,255,255,.18)}
+.footer-affil a{color:var(--gold);opacity:.6;transition:opacity .2s}
+.footer-affil a:hover{opacity:1}
+.footer-col h5{
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);opacity:.5;margin-bottom:18px;font-weight:500;
+}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,.38);transition:color .2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  max-width:1180px;margin:28px auto 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p,.footer-bottom a{
+  font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.04em;
+}
+.footer-bottom a:hover{color:rgba(255,255,255,.5)}
+.legal{display:flex;gap:20px}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{padding:20px 24px}
+  .nav-links{display:none}
+  .sec{padding:72px 24px}
+  .church-wrap,.global-layout,.partner-grid,.pillar-grid,.footer-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .church-light{border-left:none;border-top:1px solid var(--rule)}
+  .globe-wrap{display:none}
+  .mission-band{padding:64px 24px}
+  footer{padding:56px 24px 32px}
+  .hero h1{font-size:62px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="wordmark" href="#">The Saints Collective</a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#westpalm">West Palm</a></li>
+    <li><a href="#pillars">Programs</a></li>
+    <li><a href="#global">Global</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#give" class="nav-cta">Give</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-sup">Faith &middot; Missions &middot; Movement</div>
+    <h1>The Saints<br/><em>Collective</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Planting churches, sending believers, and funding justice — for the sake of the Kingdom.</p>
+    <p class="hero-verse">Matthew 28:19 &mdash; &ldquo;Go and make disciples of all nations.&rdquo;</p>
+    <div class="hero-actions">
+      <a href="#give" class="btn btn-gold">Give to the Mission</a>
+      <a href="#mission" class="btn btn-ghost">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<div class="mission-band" id="mission">
+  <span class="eyebrow">Our Mission</span>
+  <blockquote>&ldquo;To unite the body of Christ through missions, media, and movement — planting churches, funding justice, and mobilizing believers across the globe for the sake of the Kingdom.&rdquo;</blockquote>
+  <cite>The Saints Collective &nbsp;&middot;&nbsp; 501(c)(3) Nonprofit</cite>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">501<sub>(c)(3)</sub></div><div class="stat-l">Tax-Exempt Status</div></div>
+  <div class="stat"><div class="stat-n">10%</div><div class="stat-l">of Saints Club Proceeds</div></div>
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Active Mission Regions</div></div>
+  <div class="stat"><div class="stat-n">5</div><div class="stat-l">Program Pillars</div></div>
+</div>
+
+<!-- WEST PALM -->
+<section class="sec" id="westpalm">
+  <div class="sec-inner">
+    <span class="sec-label">Church Plant</span>
+    <h2 class="sec-h">West Palm Beach, <em>Florida</em></h2>
+    <p class="sec-p">Our flagship church plant — governed directly by The Saints Collective — is a Spirit-filled sending church for South Florida and beyond.</p>
+
+    <div class="church-wrap">
+      <div class="church-dark">
+        <span class="sec-label">What We're Building</span>
+        <h3 class="sec-h"><em>A church that prays, gathers,<br/>and goes</em></h3>
+        <p class="intro">A gathering place where the Holy Spirit moves, disciples are formed, and believers are commissioned and sent. Every program we run is oriented toward the Great Commission.</p>
+        <div class="prog-list">
+          <div class="prog">
+            <div class="prog-dot"></div>
+            <div class="prog-body">
+              <h5>Beach Evangelism</h5>
+              <p>Regular outreach teams taking the Gospel to South Florida beaches, boardwalks, and public spaces.</p>
+            </div>
+          </div>
+          <div class="prog">
+            <div class="prog-dot"></div>
+            <div class="prog-body">
+              <h5>Shuttle Ministry</h5>
+              <p>A dedicated shuttle picks up and drops off community members — removing every barrier to belonging.</p>
+            </div>
+          </div>
+          <div class="prog">
+            <div class="prog-dot"></div>
+            <div class="prog-body">
+              <h5>The Saints Café</h5>
+              <p>A coffee and sandwich shop operating solely for the benefit of the church — a gathering place and ministry revenue stream.</p>
+            </div>
+          </div>
+          <div class="prog">
+            <div class="prog-dot"></div>
+            <div class="prog-body">
+              <h5>Mission Merch</h5>
+              <p>All merchandise sold exclusively funds the church plant's mission and community programs.</p>
+            </div>
+          </div>
+          <div class="prog">
+            <div class="prog-dot"></div>
+            <div class="prog-body">
+              <h5>South Florida Events</h5>
+              <p>Discipleship nights, community gatherings, and missions mobilization events across the region.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="church-light">
+        <span class="sec-label">Governance</span>
+        <h3 class="sec-h" style="font-size:34px;margin-bottom:16px">Nonprofit-governed,<br/><em>mission-driven</em></h3>
+        <p style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:0">The West Palm Beach church is a direct program of The Saints Collective 501(c)(3) — providing legal structure, financial accountability, and strategic direction from day one.</p>
+        <div class="gov-note">
+          <p><strong>What this means:</strong> The Saints Collective board governs the church plant. All donations are tax-deductible under our 501(c)(3). As the congregation grows and matures, it can be incorporated and commissioned as its own independent church — a natural sending moment.</p>
+        </div>
+        <div class="check-list">
+          <div class="check-item">Prayer, presence, and the Holy Spirit at the center</div>
+          <div class="check-item">A sending church — raising up and deploying missionaries</div>
+          <div class="check-item">Café and shuttle remove barriers and build real community</div>
+          <div class="check-item">Beach evangelism and city events reach South Florida</div>
+          <div class="check-item">100% of church merch funds the local mission</div>
+        </div>
+        <a href="#give" class="btn btn-green">Support This Plant</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="sec pillars-bg" id="pillars">
+  <div class="sec-inner">
+    <span class="sec-label">What We Do</span>
+    <h2 class="sec-h">Five pillars of <em>Kingdom work</em></h2>
+    <p class="sec-p">Every initiative is rooted in the Great Commission and the Great Commandment — love God, love people, make disciples, advance justice.</p>
+
+    <div class="pillar-grid">
+
+      <div class="pillar">
+        <div class="pillar-n">01</div>
+        <svg class="pillar-icon" viewBox="0 0 34 34" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round">
+          <rect x="14" y="1" width="6" height="32"/><rect x="1" y="14" width="32" height="6"/>
+        </svg>
+        <h3>Church Planting</h3>
+        <p>Planting and governing Spirit-filled churches, beginning in West Palm Beach — a sending church oriented toward the Great Commission and the nations.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-n">02</div>
+        <svg class="pillar-icon" viewBox="0 0 34 34" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="17" cy="17" r="15"/><ellipse cx="17" cy="17" rx="6" ry="15"/><line x1="2" y1="17" x2="32" y2="17"/>
+        </svg>
+        <h3>International Missions</h3>
+        <p>Partnering with YWAM Seville's farm base in Spain — providing financial support and producing a documentary on what God is doing through this global outpost.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-n">03</div>
+        <svg class="pillar-icon" viewBox="0 0 34 34" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M17 2l13 13v17H4V15L17 2z"/><rect x="12" y="21" width="10" height="11"/>
+        </svg>
+        <h3>Justice &amp; Reform</h3>
+        <p>Supporting organizations on the frontlines of human trafficking rehabilitation, civic leadership development, and advocacy for the vulnerable in our communities.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-n">04</div>
+        <svg class="pillar-icon" viewBox="0 0 34 34" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="11" cy="10" r="5"/><circle cx="23" cy="10" r="5"/>
+          <path d="M1 29c0-5 4.5-9 10-9h12c5.5 0 10 4 10 9"/>
+        </svg>
+        <h3>Grants &amp; Partnerships</h3>
+        <p>Funding vetted Christian nonprofits and charitable initiatives aligned with our mission. The body is stronger together — strategic generosity multiplies Kingdom impact.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-n">05</div>
+        <svg class="pillar-icon" viewBox="0 0 34 34" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M9 28V16l8-12 8 12v12"/><circle cx="17" cy="10" r="3"/>
+        </svg>
+        <h3>Movement &amp; Media</h3>
+        <p>Connecting Christian creators, artists, pastors, and leaders for unified Kingdom missions — commissioning worship music, documentaries, and faith-based platforms.</p>
+      </div>
+
+      <div class="pillar" style="background:var(--green)">
+        <div class="pillar-n" style="color:rgba(255,255,255,.18)">TSC</div>
+        <svg class="pillar-icon" viewBox="0 0 34 34" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M17 2L2 10v14l15 8 15-8V10L17 2z"/>
+        </svg>
+        <h3 style="color:var(--white)">Connected to The Saints Club</h3>
+        <p style="color:rgba(255,255,255,.42)">10% of all Saints Club membership and merchandise proceeds flow directly into The Saints Collective — a built-in generosity model that scales with the mission.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL -->
+<section class="sec global-bg" id="global">
+  <div class="sec-inner">
+    <span class="sec-label">Where We Operate</span>
+    <h2 class="sec-h">Local roots, <em>global reach</em></h2>
+    <p class="sec-p">Active partnerships and presence spanning from South Florida to Southern Spain.</p>
+    <div class="global-layout">
+      <div class="loc-list">
+        <div class="loc">
+          <div class="loc-dot-wrap"><div class="loc-dot"></div><div class="loc-vline"></div></div>
+          <div>
+            <h4>West Palm Beach, Florida</h4>
+            <p>Our flagship sending church — beach evangelism, shuttle ministry, café, and community events reaching South Florida and beyond.</p>
+            <span class="loc-tag">Church Plant &middot; Active</span>
+          </div>
+        </div>
+        <div class="loc">
+          <div class="loc-dot-wrap"><div class="loc-dot"></div><div class="loc-vline"></div></div>
+          <div>
+            <h4>Seville, Spain</h4>
+            <p>YWAM farm base and missions community. We fund the operation and are producing a documentary capturing what God is doing through this international outpost.</p>
+            <span class="loc-tag">YWAM &middot; Documentary</span>
+          </div>
+        </div>
+        <div class="loc">
+          <div class="loc-dot-wrap"><div class="loc-dot"></div></div>
+          <div>
+            <h4>Texas, USA</h4>
+            <p>Supporting rehabilitation and civic leadership initiatives across the state — partnering with organizations serving the vulnerable and raising up the next generation of Christian leaders.</p>
+            <span class="loc-tag">Justice &middot; Reform</span>
+          </div>
+        </div>
+      </div>
+      <div class="globe-wrap">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" stroke="#C9A96A" stroke-width="1"/>
+          <ellipse cx="100" cy="100" rx="42" ry="90" stroke="#C9A96A" stroke-width=".7"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="#C9A96A" stroke-width=".7"/>
+          <ellipse cx="100" cy="100" rx="90" ry="32" stroke="#C9A96A" stroke-width=".55"/>
+          <ellipse cx="100" cy="100" rx="90" ry="70" stroke="#C9A96A" stroke-width=".5"/>
+          <circle cx="65" cy="115" r="5" fill="#C9A96A"/>
+          <circle cx="65" cy="115" r="12" fill="#C9A96A" opacity=".15"/>
+          <circle cx="96" cy="88" r="5" fill="#C9A96A"/>
+          <circle cx="96" cy="88" r="12" fill="#C9A96A" opacity=".15"/>
+          <circle cx="58" cy="104" r="4" fill="#C9A96A" opacity=".65"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="sec" id="partners">
+  <div class="sec-inner">
+    <span class="sec-label">Who We Walk Alongside</span>
+    <h2 class="sec-h">Kingdom <em>partners</em></h2>
+    <p class="sec-p">We believe the body of Christ is stronger together. These are the organizations and movements we partner with to advance the Gospel and serve communities.</p>
+
+    <div class="partner-grid">
+      <div class="partner-card" style="border-top:2px solid var(--green)">
+        <div class="partner-type">Civic Leadership &middot; National</div>
+        <h4>Civic Leadership Initiative</h4>
+        <p>Partnering with a national organization developing curriculum and programs to raise up godly men and women for public office — equipping the next generation of Christ-centered civic leaders.</p>
+      </div>
+      <div class="partner-card" style="border-top:2px solid var(--gold)">
+        <div class="partner-type">Human Trafficking &middot; Texas</div>
+        <h4>Rehabilitation &amp; Restoration</h4>
+        <p>Supporting a pioneering facility in Texas dedicated to holistic, trauma-informed rehabilitation for survivors of human trafficking — long-term healing, not short-term shelter.</p>
+      </div>
+      <div class="partner-card" style="border-top:2px solid var(--green)">
+        <div class="partner-type">International Missions &middot; Spain</div>
+        <h4>YWAM Seville</h4>
+        <p>Youth With A Mission's integrated farm base in Seville — a community of missionaries pursuing sustainable agriculture, discipleship, and Gospel witness from the heart of Andalusia.</p>
+      </div>
+      <div class="partner-card partner-open">
+        <div>
+          <div class="partner-type" style="text-align:center;margin-bottom:10px">Open Partnership</div>
+          <h4 style="color:var(--muted);font-size:22px;margin-bottom:10px">Your Organization</h4>
+          <p style="font-size:13px;max-width:260px;margin:0 auto 24px">We are actively seeking aligned Christian nonprofits, churches, artists, and leaders to partner with for Kingdom impact.</p>
+          <a href="#give" class="btn btn-outline" style="font-size:10px;padding:10px 22px">Connect With Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVE -->
+<section class="sec give-bg" id="give">
+  <div class="give-inner sec-inner">
+    <span class="sec-label">Give</span>
+    <h2 class="sec-h" style="color:var(--white);text-align:center">Partner with <em>the mission</em></h2>
+    <p class="sec-p" style="color:rgba(255,255,255,.48);margin:0 auto 44px;text-align:center;max-width:100%">Your generosity directly funds church plants, international missions, and justice work. Every gift advances the Kingdom.</p>
+
+    <div class="amounts">
+      <button class="amt" onclick="pick(25,this)">$25</button>
+      <button class="amt on" onclick="pick(50,this)">$50</button>
+      <button class="amt" onclick="pick(100,this)">$100</button>
+      <button class="amt" onclick="pick(250,this)">$250</button>
+      <button class="amt" onclick="pick(500,this)">$500</button>
+      <button class="amt" onclick="pick(null,this)">Custom</button>
+    </div>
+    <div class="give-row">
+      <input class="give-input" id="ga" type="text" value="$50" placeholder="Enter amount"/>
+      <button class="btn btn-gold">Give Now</button>
+    </div>
+    <p class="give-note">501(c)(3) nonprofit — all donations are tax-deductible</p>
+
+    <div class="give-stats">
+      <div style="text-align:center"><div class="gs-n">10%</div><div class="gs-l">Saints Club proceeds donated</div></div>
+      <div style="text-align:center"><div class="gs-n">WPB</div><div class="gs-l">Church plant active</div></div>
+      <div style="text-align:center"><div class="gs-n">3+</div><div class="gs-l">Nations reached</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="sec nl-bg">
+  <div class="nl-inner sec-inner">
+    <span class="sec-label" style="display:block;text-align:center">Stay Connected</span>
+    <h2 class="sec-h">Join the movement</h2>
+    <p class="sec-p">Updates on our church plant, mission trips, partnerships, and how you can be part of what God is doing.</p>
+    <div class="nl-row">
+      <input class="nl-input" type="email" placeholder="Your email address"/>
+      <button class="btn btn-green">Subscribe</button>
+    </div>
+    <p class="nl-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name">The Saints Collective</div>
+      <p>A faith-based 501(c)(3) nonprofit planting churches, sending missionaries, funding justice, and uniting the body of Christ for the sake of the Kingdom.</p>
+      <p class="footer-affil">An initiative of <a href="https://thesaintsclub.org" target="_blank">The Saints Club</a> &middot; theleesmedia.com</p>
+    </div>
+    <div class="footer-col">
+      <h5>Programs</h5>
+      <ul>
+        <li><a href="#westpalm">WPB Church Plant</a></li>
+        <li><a href="#pillars">International Missions</a></li>
+        <li><a href="#pillars">Justice &amp; Reform</a></li>
+        <li><a href="#pillars">Grants &amp; Partners</a></li>
+        <li><a href="#pillars">Movement &amp; Media</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <ul>
+        <li><a href="#mission">Our Mission</a></li>
+        <li><a href="#global">Where We Work</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#">Board of Directors</a></li>
+        <li><a href="#">Annual Report</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="#give">Give</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Partner With Us</a></li>
+        <li><a href="https://thesaintsclub.org" target="_blank">The Saints Club</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 The Saints Collective. All rights reserved. 501(c)(3) Nonprofit.</p>
+    <div class="legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Donor Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('solid',scrollY>70);
+});
+function pick(v,el){
+  document.querySelectorAll('.amt').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  const f=document.getElementById('ga');
+  if(!v){f.value='';f.placeholder='Enter amount';f.focus();}
+  else{f.value='$'+v;}
+}
+</script>
+</body>
+</html>
